@@ -12,3 +12,4 @@ github_username:  scrubmx
 
 # Build settings
 markdown: redcarpet
+pygments: true
