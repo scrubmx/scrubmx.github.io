@@ -5,8 +5,8 @@ meta_description: "Blogging about stuffs"
 aboutPage: true
 
 markdown: redcarpet
-# highlighter: pygments
-highlighter: rouge
+highlighter: pygments
+# highlighter: rouge
 
 paginate: 20
 baseurl: /
