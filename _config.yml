@@ -5,14 +5,14 @@ meta_description: "Blogging about stuffs"
 aboutPage: true
 
 markdown: redcarpet
-highlighter: pygments
-# highlighter: rouge
+# highlighter: pygments
+highlighter: rouge
 
 paginate: 20
 baseurl: /
 domain_name: 'https://scrubmx.github.io'
 google_analytics: 'UA-66324217-1'
-disqus: true
+disqus: false
 disqus_shortname: 'scrubmx'
 
 # Details for the RSS feed generator
