@@ -12,7 +12,7 @@ paginate: 20
 baseurl: /
 domain_name: 'https://scrubmx.github.io'
 google_analytics: 'UA-66324217-1'
-disqus: false
+disqus: true
 disqus_shortname: 'scrubmx'
 
 # Details for the RSS feed generator
