@@ -1,4 +1,4 @@
-name: Jorge González's Blog
+name: Jorge González Blog
 description: Blogging about stuffs
 meta_description: "Blogging about stuffs"
 
@@ -19,7 +19,6 @@ disqus_shortname: 'scrubmx'
 url:            'https://scrubmx.github.io'
 author:         'Jorge González'
 authorTwitter:  'scrubmx'
-authorGithub:   'scrubmx'
 
 permalink:       /:year/:title/
 
