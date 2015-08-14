@@ -1,23 +1,25 @@
-name: Your New Jekyll Site
+name: Jorge González's Blog
 description: Blogging about stuffs
-meta_description: "Jekyll Site, Blogging about stuffs"
+meta_description: "Blogging about stuffs"
 
 aboutPage: true
 
 markdown: redcarpet
-highlighter: pygments
+# highlighter: pygments
+highlighter: rouge
 
 paginate: 20
 baseurl: /
 domain_name: 'https://scrubmx.github.io'
-google_analytics: 'UA-XXXXXXXX-X'
-disqus: false
-disqus_shortname: 'your-disqus-shortname'
+google_analytics: 'UA-66324217-1'
+disqus: true
+disqus_shortname: 'scrubmx'
 
 # Details for the RSS feed generator
 url:            'https://scrubmx.github.io'
 author:         'Jorge González'
 authorTwitter:  'scrubmx'
+authorGithub:   'scrubmx'
 
 permalink:       /:year/:title/
 

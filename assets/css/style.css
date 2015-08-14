@@ -71,7 +71,7 @@ h2 {
 
 .profile #wrapper {
 	padding: 100px 40px 0px;
-	max-width: 600px;
+	max-width: 720px;
 	margin: 0 auto;
 }
 
@@ -111,7 +111,7 @@ h2 {
 nav.main-nav {
 	padding: 20px 20px 0;
 
-	/*max-width: 600px;*/
+	/*max-width: 608px;*/
 	/*width:100%;*/
 	background: #fff;
 	background: rgba(255,255,255,.90);
@@ -139,13 +139,13 @@ nav.main-nav a.cta {
 }
 
 #wrapper {
-  max-width: 600px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 60px 40px 100px 40px;
 }
 
 #wrapper.home {
-	max-width: 600px;
+	max-width: 720px;
 	margin: 0 auto;
 	padding: 0px 40px 20px 40px;
 }
@@ -184,6 +184,10 @@ a,
 
 ul 	{ margin:0; padding:0; }
 li	{ list-style-type:circle; list-style-position:inside; }
+
+ol li {
+  list-style-type: decimal;
+}
 
 /* Line Height */
 #post-body, p { line-height:1.7; }
@@ -295,7 +299,7 @@ span.code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size
 
 pre	{
 	font-family:Menlo, Monaco, Courier;
-	white-space:pre-wrap;
+	white-space:no-wrap;
 	/*border: 1px solid #ddd;*/
 	padding:20px;
 	background-color:#fdfdfd;
