@@ -69,7 +69,7 @@
           link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
         });
       });
-    }, { threshold: 0.5 });
+    }, { rootMargin: '-50% 0px -50% 0px' });
     document.querySelectorAll('section').forEach(function (section) { observer.observe(section); });
   </script>
 </body>
