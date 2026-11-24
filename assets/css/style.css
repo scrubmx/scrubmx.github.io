@@ -220,8 +220,10 @@ section h2 {
   .about-text a:hover { text-decoration: underline; }
 }
 
+/* Hover tilt, driven by the script in _layouts/default.html */
+.tilt { flex-shrink: 0; transform-style: preserve-3d; }
+
 .polaroid {
-  flex-shrink: 0;
   width: 16rem;
   height: 20rem;
   padding: 1rem;

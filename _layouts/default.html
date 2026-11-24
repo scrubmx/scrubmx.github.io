@@ -71,6 +71,44 @@
       });
     }, { rootMargin: '-50% 0px -50% 0px' });
     document.querySelectorAll('section').forEach(function (section) { observer.observe(section); });
+
+    // Port of motion-primitives <Tilt rotationFactor={8} isRevese>: the pointer offset from the
+    // centre (-0.5..0.5) follows a spring (motion's useSpring defaults: stiffness 100, damping 10,
+    // mass 1) and is mapped to rotateX/rotateY, clamped to +/-8deg. Like the library (motion's
+    // reducedMotion defaults to "never"), it runs regardless of prefers-reduced-motion.
+    var tilt = document.querySelector('.tilt');
+    if (tilt) {
+      var FACTOR = 8;
+      var target = { x: 0, y: 0 }, pos = { x: 0, y: 0 }, vel = { x: 0, y: 0 };
+      var last = 0, frame = 0;
+      var clamp = function (v) { return Math.max(-0.5, Math.min(0.5, v)); };
+      var step = function (now) {
+        var dt = Math.max(0, Math.min((now - last) / 1000, 0.064)) / 4;
+        var moving = false;
+        last = now;
+        ['x', 'y'].forEach(function (k) {
+          for (var i = 0; i < 4; i++) {
+            vel[k] += (-100 * (pos[k] - target[k]) - 10 * vel[k]) * dt;
+            pos[k] += vel[k] * dt;
+          }
+          if (Math.abs(vel[k]) > 0.001 || Math.abs(pos[k] - target[k]) > 0.001) moving = true;
+          else { pos[k] = target[k]; vel[k] = 0; }
+        });
+        tilt.style.transform = 'perspective(1000px) rotateX(' + (-2 * FACTOR * clamp(pos.y)) +
+          'deg) rotateY(' + (2 * FACTOR * clamp(pos.x)) + 'deg)';
+        frame = moving ? requestAnimationFrame(step) : 0;
+      };
+      var animate = function () {
+        if (!frame) { last = performance.now(); frame = requestAnimationFrame(step); }
+      };
+      tilt.addEventListener('mousemove', function (e) {
+        var rect = tilt.getBoundingClientRect();
+        target.x = (e.clientX - rect.left) / rect.width - 0.5;
+        target.y = (e.clientY - rect.top) / rect.height - 0.5;
+        animate();
+      });
+      tilt.addEventListener('mouseleave', function () { target.x = 0; target.y = 0; animate(); });
+    }
   </script>
 </body>
 </html>
