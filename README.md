@@ -1,53 +1,63 @@
-# Cactus Theme for Jekyll
+# scrubmx.github.io
 
-This is a port of [Cactus](https://github.com/koenbok/Cactus)'s default theme for Jekyll.
-Feel free to fork, change, modify and re-use it.
+Personal portfolio of Jorge González, Senior Full Stack Developer, live at
+[scrubmx.github.io](https://scrubmx.github.io).
 
-## How to use it
+It's a single static page built with Jekyll and deployed to GitHub Pages. Its design is modelled
+on [Astro Zen](https://github.com/immois/astro-zen) by Moisés Machuca.
 
-Simply clone this repository, and then run `jekyll serve` inside the directory.
-This theme is fully compliant with GH Pages and their dependencies.
-For extra info: [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/#keeping-jekyll-up-to-date).
+![Portfolio at 1440px](screenshots/final-1440.png)
 
-Cactus theme includes:
+## Structure
 
-* Pagination
-* Rss feed
-* Google Analytics Tracking code
-* Code Syntax Highlight
-* Author's profile with picture header
-* Twitter/Facebook share buttons
-* Archive posts list under each post
-* Disqus comments
+| Path | Contents |
+| --- | --- |
+| `index.html` | Page content: hero, work experience, about |
+| `_layouts/default.html` | Meta tags, sticky header and mobile menu, footer, nav script |
+| `assets/css/style.css` | All styles (no framework). Values copied from the reference's computed styles |
+| `assets/images/` | Profile photo, favicon, check and external-link icons |
+| `_config.yml` | Site title, author, description, URL |
+| `.github/workflows/deploy.yml` | Builds with Jekyll and deploys to GitHub Pages |
 
-## Screenshots
+Fonts are [Gabarito](https://fonts.google.com/specimen/Gabarito) for headings and
+[Be Vietnam Pro](https://fonts.google.com/specimen/Be+Vietnam+Pro) for body text, loaded from
+Google Fonts at weight 400 only. The browser synthesizes the bold, as on the reference.
 
-![index page](https://raw.githubusercontent.com/nickbalestra/kactus/master/assets/images/Kactus-theme-index.png)
-![post page](https://raw.githubusercontent.com/nickbalestra/kactus/master/assets/images/Kactus-theme-post.png)
+## Editing content
 
+- **Work experience:** each role is a `.job` block in `index.html`. Bullets are copied verbatim
+  from the resume.
+- **Featured Projects:** not built yet. Look for the `<!-- TODO -->` comments in `index.html` and
+  `_layouts/default.html`, and see [BLOCKERS.md](BLOCKERS.md) for what's needed.
+- **Name, title and meta description:** set in `_config.yml`.
 
-## Thanks
-Most of the work has been already done by the [Cactus for mac authors](https://github.com/koenbok/Cactus/blob/master/AUTHORS), I've just ported their default theme to Jekyll.
-I've also added few things specific to Jekyll and some minor style changes.
+## Local development
 
-## Copyright & License
+Requires Docker. A system Ruby works too, as long as it's 3.x with Bundler.
 
-Copyright (c) 2015 [Cactus Authors](https://github.com/koenbok/Cactus/blob/master/AUTHORS) -  Released under the MIT License.
+Build the site into `_site/`:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+```bash
+docker run --rm -v "$PWD":/srv -v jekyll-gems:/usr/local/bundle -w /srv ruby:3.3 sh -c "bundle install && bundle exec jekyll build"
+```
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Serve the build with a plain static server:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+```bash
+python3 -m http.server 4000 -d _site
+```
+
+Then open http://localhost:4000.
+
+## Deployment
+
+Each push to `master` runs `.github/workflows/deploy.yml`. It builds the site with Jekyll 4 and
+publishes it with the official `actions/upload-pages-artifact` and `actions/deploy-pages`
+actions. Asset paths use Jekyll's `relative_url` filter, so the build works at the domain root
+or under a sub-path.
+
+One-time setup: in the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
+
+## License
+
+[MIT](LICENSE).
