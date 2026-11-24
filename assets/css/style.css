@@ -143,13 +143,43 @@ section h2 {
   color: var(--neutral);
 }
 
+/* Port of motion-primitives <GlowEffect mode="colorShift" blur="soft" duration={3} scale={0.9}>
+   with its default colours: a blurred conic gradient behind the button whose two colours step
+   through each colour pair, linear, 3s, alternating (motion's repeatType "mirror"). */
+@property --glow-a { syntax: "<color>"; inherits: false; initial-value: #4f39f6; }
+@property --glow-b { syntax: "<color>"; inherits: false; initial-value: #33ff57; }
+
+.glow-wrap { position: relative; display: inline-block; vertical-align: top; }
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: conic-gradient(from 0deg at 50% 50%, var(--glow-a) 0%, var(--glow-b) 50%, var(--glow-a) 100%);
+  border-radius: calc(infinity * 1px); /* follow the pill so the corners don't haze grey */
+  filter: blur(8px);
+  scale: 0.9;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: glow-color-shift 3s linear infinite alternate;
+}
+
+@keyframes glow-color-shift {
+  0% { --glow-a: #4f39f6; --glow-b: #33ff57; }
+  33.333% { --glow-a: #33ff57; --glow-b: #3357ff; }
+  66.667% { --glow-a: #3357ff; --glow-b: #f1c40f; }
+  100% { --glow-a: #f1c40f; --glow-b: #4f39f6; }
+}
+
 .hero .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: between;
   padding: 1.25rem 2rem;
   border-radius: calc(infinity * 1px);
-  background-color: var(--primary);
+  outline: 1px solid #fff2f21f;
+  background-color: #101419;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 500;
