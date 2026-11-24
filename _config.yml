@@ -1,43 +1,21 @@
-name: Jorge González Blog
-description: Blogging about stuffs
-meta_description: "Blogging about stuffs"
+title: "Jorge González — Senior Full Stack Developer"
+author: "Jorge González"
+description: "Senior full-stack engineer with 12 years of experience building and modernizing scalable web applications. I've worked remotely with US teams since 2020."
 
-aboutPage: true
+# User site: served at the domain root. The deploy workflow passes the real
+# base path from actions/configure-pages, so paths stay correct either way.
+url: "https://scrubmx.github.io"
+baseurl: ""
 
-markdown: redcarpet
-highlighter: pygments
-#highlighter: rouge
+markdown: kramdown
 
-paginate: 20
-baseurl: /
-domain_name: 'https://scrubmx.github.io'
-google_analytics: 'UA-66324217-1'
-disqus: true
-disqus_shortname: 'scrubmx'
-
-# Details for the RSS feed generator
-url:            'https://scrubmx.github.io'
-author:         'Jorge González'
-authorTwitter:  'scrubmx'
-
-permalink:       /:year/:title/
-
-defaults:
-    -
-        scope:
-            path: "" # empty string for all files
-            type: pages
-        values:
-            layout: default
-    -
-        scope:
-            path: "" # empty string for all files
-            type: posts
-        values:
-            layout: post
-    -
-        scope:
-            path: ""
-            type: drafts
-        values:
-            layout: post
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - PROGRESS.md
+  - BLOCKERS.md
+  - DONE.md
+  - screenshots

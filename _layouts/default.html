@@ -2,42 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.name }}{% if page.title %} - {{ page.title }}{% endif %}</title>
-  <link rel="shortcut icon" href="/assets/images/favicon.ico">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="alternate" type="application/rss+xml" title="Jorge González's Blog" href="/rss.xml">
-  <link rel="stylesheet" href="/assets/css/highlight.css">
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:url" content="{{ '/' | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/images/profile.png' | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@scrubmx">
+  <meta name="twitter:title" content="{{ site.title }}">
+  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:image" content="{{ '/assets/images/profile.png' | absolute_url }}">
+  <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital@0;1&family=Gabarito&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" aria-label="Home link">
+      <img class="avatar" src="{{ '/assets/images/profile.png' | relative_url }}" alt="{{ site.author }}" width="45" height="45">
+    </a>
+    <button type="button" id="menu-button" aria-expanded="false" aria-controls="main-menu" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" fill="currentColor"><path d="M128 102.4c0-14.138 11.462-25.6 25.6-25.6h332.8c14.138 0 25.6 11.462 25.6 25.6S500.538 128 486.4 128H153.6c-14.138 0-25.6-11.463-25.6-25.6zm358.4 128H25.6C11.462 230.4 0 241.863 0 256c0 14.138 11.462 25.6 25.6 25.6h460.8c14.138 0 25.6-11.462 25.6-25.6 0-14.137-11.462-25.6-25.6-25.6zm0 153.6H256c-14.137 0-25.6 11.462-25.6 25.6 0 14.137 11.463 25.6 25.6 25.6h230.4c14.138 0 25.6-11.463 25.6-25.6 0-14.138-11.462-25.6-25.6-25.6z"/></svg>
+    </button>
+    <nav id="main-menu" class="hidden">
+      <ul>
+        <li><a class="nav-item" href="#experience">Experience</a></li>
+        <!-- TODO: add <li><a class="nav-item" href="#projects">Projects</a></li> once the Featured Projects section has content (see BLOCKERS.md) -->
+        <li><a class="nav-item" href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  {% include navigation.html %}
-
-  {% if page.profile %}
-      {% include profile.html %}
-  {% endif %}
-
-  <section id="wrapper" class="{% if page.profile %}home{% endif %}">
+  <main>
     {{ content }}
-  </section>
+  </main>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/highlight.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <footer class="site-footer">
+    <ul>
+      <li><a class="external" href="https://twitter.com/scrubmx" target="_blank" rel="noopener">Twitter</a></li>
+      <li><a class="external" href="https://www.linkedin.com/in/jorge-gnz" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a class="external" href="https://github.com/scrubmx" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <p>© 2026 Jorge González. All rights reserved.</p>
+  </footer>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    var button = document.getElementById('menu-button');
+    var menu = document.getElementById('main-menu');
+    var links = menu.querySelectorAll('a');
+    function toggleMenu() {
+      menu.classList.toggle('hidden');
+      button.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
+    }
+    button.addEventListener('click', toggleMenu);
+    links.forEach(function (link) { link.addEventListener('click', toggleMenu); });
 
-    ga('create', '{{ site.google_analytics }}', 'auto');
-    ga('send', 'pageview');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    document.querySelectorAll('section').forEach(function (section) { observer.observe(section); });
   </script>
 </body>
 </html>
-
-
-

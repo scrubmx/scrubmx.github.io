@@ -1,6 +1,103 @@
 ---
-profile: true
+layout: default
 ---
+<section id="hero" class="hero">
+  <h1>Jorge González</h1>
+  <p class="hero-role">Senior Full Stack Developer</p>
+  <p class="hero-intro">Senior full-stack engineer with 12 years of experience building and modernizing scalable web applications. I've worked remotely with US teams since 2020.</p>
+  <a class="button" href="mailto:jorgegonzalez.dev@gmail.com">Get in Touch</a>
+</section>
 
-{% include post-list.html %}
-{% include footer.html %}
+<section id="experience">
+  <h2>Work Experience</h2>
+
+  <div class="job">
+    <h3>King Tide</h3>
+    <div class="job-meta">
+      <h4>Senior Full-Stack Developer</h4>
+      <span>Sep 2025 – Present</span>
+    </div>
+    <ul class="checks">
+      <li>Designed and implemented a financial data platform with a REST API and ETL pipeline built using NestJS and PostgreSQL. Integrated third-party data providers and web scrapers to ingest and enrich company financial data and news articles, with normalization, deduplication, retries, and error handling.</li>
+      <li>Integrated OpenAI models to enrich company financial data and match news articles to companies.</li>
+      <li>Improved LLM accuracy by refining prompts and implementing RAG (retrieval-augmented generation) with pgvector similarity search to provide relevant context.</li>
+      <li>Implemented background jobs with RabbitMQ and Redis to coordinate execution with locks and avoid race condition issues. Also used database transactions to maintain data consistency.</li>
+      <li>Built an internal dashboard with Next.js (Tailwind CSS, shadcn/ui, Zod, and TanStack) to analyze the financial data and review ingestion and enrichment run results.</li>
+      <li>Added unit and e2e tests to the backend and admin dashboard with Jest and Vitest using Claude Code and Codex to help us quickly reach our target test coverage of 90%.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>Vector Casa de Bolsa</h3>
+    <div class="job-meta">
+      <h4>Software Development Manager</h4>
+      <span>Jan 2024 – Aug 2025</span>
+    </div>
+    <ul class="checks">
+      <li>Managed and mentored 16 engineers across web, mobile, and QA teams, introducing automated testing, code reviews, GitFlow, and CI/CD to improve delivery quality and consistency.</li>
+      <li>Led the migration of a Python and AWS Lambda REST API to an Elixir and Phoenix Framework GraphQL API, from design and implementation through code reviews, rollout, and production support.</li>
+      <li>Introduced event-driven architecture with Phoenix PubSub, reducing coupling between modules and allowing real-time updates through GraphQL subscriptions over WebSockets.</li>
+      <li>Built the frontend for an LLM-backed customer support chatbot with Next.js and Vercel AI SDK. This allowed customers to get answers after hours.</li>
+      <li>Established Docker-based workflows for local development and AWS ECS deployments and trained the team to use them, reducing environment-related bugs.</li>
+      <li>Built the WordPress landing page with TypeScript, React, Vite, Vitest, Tailwind CSS and shadcn/ui.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>Kickfurther</h3>
+    <div class="job-meta">
+      <h4>Senior Software Engineer</h4>
+      <span>Oct 2020 – Jan 2024</span>
+    </div>
+    <ul class="checks">
+      <li>Modernized a legacy Laravel platform by replacing its Vue.js frontend with the TALL stack (Tailwind CSS, Alpine.js, Laravel, Livewire)</li>
+      <li>Increased test code coverage from 10% to 85% with PHPUnit and Pest.</li>
+      <li>Reduced customers dashboard pages response times from over 4 seconds to under half a second by optimizing MySQL indexes and refactoring Eloquent queries.</li>
+      <li>Integrated LexisNexis, Experian, HubSpot, and an internal ML scoring engine behind interfaces, including scheduled tasks and background jobs with idempotency keys, locks, retries, and error handling.</li>
+      <li>Owned most of the Stripe integration, including handling webhook events and expanding test coverage for fee and payout calculations.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>Voxie</h3>
+    <div class="job-meta">
+      <h4>Senior Software Developer</h4>
+      <span>Jan 2020 – Oct 2020</span>
+    </div>
+    <ul class="checks">
+      <li>Migrated a legacy Laravel application from AWS EC2 to AWS Lambda using Laravel Vapor and AWS SQS for background jobs. Allowing the application to process bursts of over one million SMS messages in minutes.</li>
+      <li>Developed REST API endpoints and Twilio integrations, including webhooks, and implemented real-time messaging for a customer-facing Vue.js SPA using Laravel Echo and Pusher WebSockets.</li>
+      <li>Reduced report generation time from 2 minutes to under 10 seconds by exporting AWS Aurora MySQL query results directly to AWS S3.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>Zigo Capital</h3>
+    <div class="job-meta">
+      <h4>Senior Software Developer</h4>
+      <span>Nov 2016 – Jan 2020</span>
+    </div>
+    <ul class="checks">
+      <li>Built and launched a Laravel lending platform from scratch using test-driven development (TDD) and a modular architecture following domain-driven design (DDD) and SOLID principles.</li>
+      <li>Integrated a Python risk-scoring service and a Ruby on Rails credit bureau service into the loan evaluation flow, enabling automated loan scoring.</li>
+      <li>Introduced hexagonal architecture with interfaces and contract tests to isolate provider integrations, allowing the platform to swap providers and supporting its steady growth for more than three years.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TODO: Featured Projects section. The repo has no project content yet; add a
+     <section id="projects"> with project cards here and restore the nav link
+     (see BLOCKERS.md). -->
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <div class="about-text">
+      <p>Hi, my name is Jorge González and I'm a web developer from Mexico City. I am an expert at developing, designing and maintaining RESTful APIs as well as a wide range of web applications for all sorts of clients.</p>
+      <p>I am an alumni of <a href="https://www.recurse.com" target="_blank" rel="noopener">The Recurse Center</a> which is a three-month educational retreat for programmers. The biggest take-away for me besides meeting awesome people was realizing that programming languages are just a tool and you have to focus more on solving problems instead of picking the "right language". This is why I believe on picking the right tool for the job and I often find myself going back and forward between ruby, python, javascript and php.</p>
+    </div>
+    <div class="polaroid">
+      <img src="{{ '/assets/images/profile.png' | relative_url }}" alt="Jorge González" loading="lazy" width="224" height="224">
+    </div>
+  </div>
+</section>
